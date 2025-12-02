@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}My Appointments - Khalifa Polish{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center mb-5">My Appointments</h1>
+    
+    {% if appointments %}
+        <div class="row">
+            {% for appointment in appointments %}
+            <div class="col-md-6 mb-4">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ appointment.service.name }}</h5>
+                        <p><strong>Date:</strong> {{ appointment.appointment_date }}</p>
+                        <p><strong>Time:</strong> {{ appointment.appointment_time }}</p>
+                        <p><strong>Car:</strong> {{ appointment.car_year }} {{ appointment.car_make }} {{ appointment.car_model }}</p>
+                        <p><strong>Status:</strong> 
+                            <span class="badge bg-{% if appointment.status == 'confirmed' %}success{% elif appointment.status == 'pending' %}warning{% elif appointment.status == 'cancelled' %}danger{% else %}secondary{% endif %}">
+                                {{ appointment.get_status_display }}
+                            </span>
+                        </p>
+                        {% if appointment.notes %}
+                            <p><strong>Notes:</strong> {{ appointment.notes }}</p>
+                        {% endif %}
+                        {% if appointment.status == 'pending' or appointment.status == 'confirmed' %}
+                            <a href="{% url 'cancel_appointment' appointment.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to cancel this appointment?')">Cancel</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="text-center">
+            <p>You haven't booked any appointments yet.</p>
+            <a href="{% url 'book_appointment' %}" class="btn btn-primary">Book Your First Appointment</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

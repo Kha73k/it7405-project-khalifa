@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}Checkout - Khalifa Polish{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="mb-4">Checkout</h2>
+    
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5>Shipping Information</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <div class="mb-3">
+                            <label for="phone_number" class="form-label">Phone Number *</label>
+                            <input type="tel" class="form-control" id="phone_number" name="phone_number" 
+                                   placeholder="e.g., 33123456" required>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="house_number" class="form-label">House/Building Number *</label>
+                                <input type="text" class="form-control" id="house_number" name="house_number" 
+                                       placeholder="e.g., 123" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="road_number" class="form-label">Road Number *</label>
+                                <input type="text" class="form-control" id="road_number" name="road_number" 
+                                       placeholder="e.g., 45" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="block" class="form-label">Block *</label>
+                                <input type="text" class="form-control" id="block" name="block" 
+                                       placeholder="e.g., 340" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="city" class="form-label">City/Area *</label>
+                                <input type="text" class="form-control" id="city" name="city" 
+                                       placeholder="e.g., Manama" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="additional_info" class="form-label">Additional Information (Optional)</label>
+                            <textarea class="form-control" id="additional_info" name="additional_info" rows="2" 
+                                      placeholder="Apartment number, floor, landmarks, etc."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-lg w-100 mt-3">Place Order</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Order Summary</h5>
+                </div>
+                <div class="card-body">
+                    {% for item in cart_items %}
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>{{ item.product.name }} x {{ item.quantity }}</span>
+                        <span>${{ item.get_total }}</span>
+                    </div>
+                    {% endfor %}
+                    <hr>
+                    <div class="d-flex justify-content-between">
+                        <strong>Total:</strong>
+                        <strong>${{ total }}</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

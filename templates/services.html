@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Our Services - Khalifa Polish{% endblock %}
+
+{% block content %}
+<!-- Services Hero Section -->
+<div class="bg-primary text-white text-center py-5">
+    <div class="container">
+        <h1 class="display-4">Our Services</h1>
+        <p class="lead">Professional car care solutions tailored to your needs</p>
+    </div>
+</div>
+
+<!-- Services Grid -->
+<div class="container my-5">
+    {% if services %}
+    <div class="row g-4">
+        {% for service in services %}
+        <div class="col-md-4">
+            <div class="card shadow h-100">
+                <div class="card-body text-center">
+                    <h4 class="card-title">{{ service.name }}</h4>
+                    <p class="card-text">{{ service.description }}</p>
+                    <p class="fw-bold text-primary fs-5">{{ service.price }} BHD</p>
+                    <p class="text-muted small">Duration: {{ service.duration }} minutes</p>
+                    {% if user.is_authenticated %}
+                        <a href="/appointments/book/" class="btn btn-primary">Book Now</a>
+                    {% else %}
+                        <a href="/accounts/login/" class="btn btn-primary">Login to Book</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="text-center">
+        <p>No services available yet. Please check back later!</p>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Why Choose Us Section -->
+<div class="bg-light py-5 mt-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Why Choose Khalifa Polish?</h2>
+        <div class="row">
+            <div class="col-md-3 text-center mb-3">
+                <h1 class="text-primary">10+</h1>
+                <p>Years Experience</p>
+            </div>
+            <div class="col-md-3 text-center mb-3">
+                <h1 class="text-primary">500+</h1>
+                <p>Happy Customers</p>
+            </div>
+            <div class="col-md-3 text-center mb-3">
+                <h1 class="text-primary">100%</h1>
+                <p>Quality Guaranteed</p>
+            </div>
+            <div class="col-md-3 text-center mb-3">
+                <h1 class="text-primary">24/7</h1>
+                <p>Customer Support</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

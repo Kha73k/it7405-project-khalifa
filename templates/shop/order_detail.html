@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}Order Details - Khalifa Polish{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="mb-4">Order Details #{{ order.id }}</h2>
+    
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5>Order Items</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in order.items.all %}
+                            <tr>
+                                <td>{{ item.product.name }}</td>
+                                <td>${{ item.price }}</td>
+                                <td>{{ item.quantity }}</td>
+                                <td><strong>${{ item.get_subtotal }}</strong></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3" class="text-end"><strong>Total:</strong></td>
+                                <td><strong>${{ order.total_amount }}</strong></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h5>Order Information</h5>
+                </div>
+                <div class="card-body">
+                    <p><strong>Order ID:</strong> #{{ order.id }}</p>
+                    <p><strong>Date:</strong> {{ order.created_at|date:"M d, Y H:i" }}</p>
+                    <p><strong>Status:</strong> 
+                        <span class="badge bg-{% if order.status == 'delivered' %}success{% elif order.status == 'cancelled' %}danger{% else %}warning{% endif %}">
+                            {{ order.get_status_display }}
+                        </span>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h5>Shipping Address</h5>
+                </div>
+                <div class="card-body">
+                    <p><strong>Phone:</strong> {{ order.phone_number }}</p>
+                    <p><strong>House Number:</strong> {{ order.house_number }}</p>
+                    <p><strong>Road:</strong> {{ order.road_number }}</p>
+                    <p><strong>Block:</strong> {{ order.block }}</p>
+                    <p><strong>City:</strong> {{ order.city }}</p>
+                    {% if order.additional_info %}
+                    <p><strong>Additional Info:</strong><br>{{ order.additional_info }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="mt-4">
+        <a href="{% url 'my_orders' %}" class="btn btn-secondary">Back to My Orders</a>
+    </div>
+</div>
+{% endblock %}
