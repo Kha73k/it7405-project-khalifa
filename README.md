@@ -38,7 +38,6 @@ The MongoDB Atlas connection is already configured in `settings.py`. The databas
 STEP-BY-STEP SETUP:
 
 1. INSTALL MONGODB
-   - Download from: https://www.mongodb.com/try/download/community
    - Install MongoDB Server 8.2
    - Make sure MongoDB service is running
 
@@ -55,4 +54,4 @@ STEP-BY-STEP SETUP:
    - python manage.py runserver
    - Open browser: http://127.0.0.1:8000
 
-DONE! Your website should work with all data intact.
+
