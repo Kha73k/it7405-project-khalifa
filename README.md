@@ -58,6 +58,6 @@ STEP-BY-STEP SETUP:
    - Click the button to add a new connection
    - go to 'Advanced Connection Options'
    - in the 'Connection String Scheme' press 'mongodb+srv'
-   - replace the URI above with this: -------->   mongodb+srv://kha73k:yuA7m9I3bSDycuY6@khalifacluster.enykws4.mongodb.net/    <--------
+   - replace the URI above with this: 'mongodb+srv://kha73k:yuA7m9I3bSDycuY6@khalifacluster.enykws4.mongodb.net/'
 
 
