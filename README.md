@@ -54,4 +54,10 @@ STEP-BY-STEP SETUP:
    - python manage.py runserver
    - Open browser: http://127.0.0.1:8000
 
+4. TO USE MONGODB COMPASS TO VIEW DATA.
+   - Click the button to add a new connection
+   - go to 'Advanced Connection Options'
+   - in the 'Connection String Scheme' press 'mongodb+srv'
+   - replace the URI above with this: -------->   mongodb+srv://kha73k:yuA7m9I3bSDycuY6@khalifacluster.enykws4.mongodb.net/    <--------
+
 
