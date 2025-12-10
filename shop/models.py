@@ -22,6 +22,13 @@ class Product(models.Model):
     
     def __str__(self):
         return self.name
+    
+    class Meta:
+        indexes = [
+            models.Index(fields=['category'], name='product_category_idx'),
+            models.Index(fields=['price'], name='product_price_idx'),
+            models.Index(fields=['-created_at'], name='product_newest_idx'),
+        ]
 
 class Cart(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -68,16 +75,13 @@ class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     total_amount = models.DecimalField(max_digits=10, decimal_places=2)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
-    
-    # Shipping details
     phone_number = models.CharField(max_length=20)
     house_number = models.CharField(max_length=50, blank=True)
     road_number = models.CharField(max_length=50, blank=True)
     block = models.CharField(max_length=50, blank=True)
     city = models.CharField(max_length=100, blank=True)
     additional_info = models.TextField(blank=True)
-    shipping_address = models.TextField()  # Keep for backward compatibility
-    
+    shipping_address = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
@@ -85,6 +89,11 @@ class Order(models.Model):
     
     class Meta:
         ordering = ['-created_at']
+        indexes = [
+            models.Index(fields=['user'], name='order_user_idx'),
+            models.Index(fields=['status'], name='order_status_idx'),
+            models.Index(fields=['-created_at'], name='order_date_idx'),
+        ]
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)

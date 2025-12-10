@@ -35,4 +35,8 @@ class Appointment(models.Model):
         return f"{self.user.username} - {self.service.name} on {self.appointment_date}"
     
     class Meta:
-        ordering = ['-appointment_date', '-appointment_time']
+        indexes = [
+            models.Index(fields=['appointment_date'], name='appt_date_idx'),
+            models.Index(fields=['status'], name='appt_status_idx'),
+            models.Index(fields=['user'], name='appt_user_idx'),
+        ]
