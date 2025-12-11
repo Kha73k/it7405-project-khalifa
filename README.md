@@ -1,16 +1,16 @@
 # Khalifa Polish - Car Detailing & E-Commerce Platform
 
-A professional car polishing and detailing service website built with Django and MongoDB.
+A professional car polishing and detailing service website built with Django and MongoDB, Connected using Djongo connector
 
 ## Features
 
-- 🚗 **Service Booking System** - Customers can book appointments for car detailing services
-- 🛒 **E-Commerce Shop** - Browse and purchase car care products
-- ⭐ **Customer Reviews** - Submit and view customer testimonials
-- 👤 **User Authentication** - Secure login/registration system
-- 📦 **Order Management** - Track orders and view order history
-- 📅 **Appointment Management** - View and manage service appointments
-- 🛍️ **Shopping Cart** - Add products and checkout seamlessly
+- **Service Booking System** - customers can book appointments for car detailing services
+- **E-Commerce Shop** - purchase car care products
+- **Customer Reviews** - submit and view customer reviews
+- **User Authentication** - secure login/registration system
+- **Order Management** - track orders and view order history
+- **Appointment Management** - view and manage service appointments
+- **Shopping Cart** - add products and checkout smoothly
 
 ## Technologies Used
 
@@ -29,25 +29,25 @@ A professional car polishing and detailing service website built with Django and
 Database Configuration
 -This project uses **MongoDB Atlas** for cloud database hosting.
 The MongoDB Atlas connection is already configured in `settings.py`. The database includes:
-   - Sample products
+   - products
    - Services
-   - Customer reviews
-   - User accounts
+   - customer reviews
+   - user accounts
 
 
 STEP-BY-STEP SETUP:
 
 1. INSTALL MONGODB
    - Install MongoDB Server 8.2
-   - Make sure MongoDB service is running
+   - Make sure MongoDB service is running in the services tab
 
  2. SETUP PYTHON PROJECT
-   - Copy the 'project' folder to your desired location (e.g., Desktop)
-   - Open terminal in the project folder
-   - Create virtual environment: python -m venv car_polish_env
-   - Activate it:
-     Windows: car_polish_env\Scripts\activate
-     Mac/Linux: source car_polish_env/bin/activate
+   - clone the project folder from github to your desired location
+   - create an environment in anaconda navigator, make sure you choose python 3.11
+   - open a powershel terminal in anaconda navigator and type: cd Your/folder/location/here
+   - type:  code .
+   - once in vscode open a terminal
+   - Activate environment: conda activate YourEnvironmentName
    - Install packages: pip install -r requirements.txt
 
 3. RUN THE WEBSITE
@@ -55,9 +55,19 @@ STEP-BY-STEP SETUP:
    - Open browser: http://127.0.0.1:8000
 
 4. TO USE MONGODB COMPASS TO VIEW DATA.
-   - Click the button to add a new connection
+   - Click the green button to add a new connection
    - go to 'Advanced Connection Options'
-   - in the 'Connection String Scheme' press 'mongodb+srv'
+   - in the 'Connection String Scheme' click 'mongodb+srv'
    - replace the URI above with this: 'mongodb+srv://kha73k:yuA7m9I3bSDycuY6@khalifacluster.enykws4.mongodb.net/'
 
+5. TO USE THE ADMIN PAGE.
+   - type in the terminal : python manage.py createsuperuser
+   - choose a username
+   - you can ignore the email part by just clicking enter
+   - choose a secure password and confirm it
+   - open the brower and enter the admin page http://127.0.0.1:8000/admin
+   - make sure to save if you modify something
 
+
+   ENJOY......
+   
